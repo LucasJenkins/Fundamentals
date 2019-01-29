@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CsharpFundamentalsAssignment
 {
@@ -27,7 +29,22 @@ namespace CsharpFundamentalsAssignment
          */
         public static bool Divides(int a, int b)
         {
-            throw new NotImplementedException();
+            if (b == 0)
+            {
+                throw new ArgumentException("Zero not allowed as divisor");
+            }
+            if (b > a)
+            {
+                return false;
+            }
+            if (a%b==0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /**
@@ -43,7 +60,23 @@ namespace CsharpFundamentalsAssignment
          */
         public static String Message(int n)
         {
-            throw new NotImplementedException();
+           
+            if (n % 3 == 0 && n % 5 == 0)
+            {
+                return $"{n}: FizzBuzz";
+            }
+            else if (n % 3 == 0)
+            {
+                return $"{n}: Fizz";
+            }
+            else if (n % 5 == 0)
+            {
+                return $"{n}: Buzz";
+            }
+            return null;
+            
+            
+    
         }
 
         /**
@@ -58,7 +91,27 @@ namespace CsharpFundamentalsAssignment
          */
         public static String[] Messages(int start, int end)
         {
-            throw new NotImplementedException();
+
+            List<string> list = new List<string>();
+            if (end < start)
+            {
+                throw new ArgumentException();
+
+            }
+            
+            for(int i = start; i< end; i++)
+            {
+                if(Message(i)!= null)
+                {
+                    list.Add(Message(i));
+                }
+                
+            }
+             
+            
+            //list.RemoveAll(x => x.Equals(null));
+            return list.ToArray();
+
         }
 
         /**
@@ -67,7 +120,16 @@ namespace CsharpFundamentalsAssignment
          */
         public static void Main(String[] args)
         {
-            throw new NotImplementedException();
+            args = Messages(1, 115);
+            foreach(string x in args)
+            {
+                if (x != null)
+                {
+                    Console.WriteLine(x);
+                }
+            }
+            
+            //throw new NotImplementedException();
         }
     }
 }

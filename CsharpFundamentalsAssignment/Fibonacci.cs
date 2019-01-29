@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CsharpFundamentalsAssignment
 {
@@ -25,7 +26,26 @@ namespace CsharpFundamentalsAssignment
          */
         public static int AtIndex(int i)
         {
-            throw new NotImplementedException();
+            List<int> list3 = new List<int>();
+            int results = 0;
+
+            if (i < 0)
+            {
+                throw new ArgumentException();
+            }
+            if (i < 2)
+            {
+                return 1;
+            }
+            list3.Add(1);
+            list3.Add(1);
+            for (int n = 1; n < i; n++)
+            {
+                results = list3[n] + list3[n - 1];
+                list3.Add(results);
+            }
+
+            return list3[i];
         }
 
         /**
@@ -40,7 +60,17 @@ namespace CsharpFundamentalsAssignment
          */
         public static int[] Slice(int start, int end)
         {
-            throw new NotImplementedException();
+            List<int> list = new List<int>();
+
+            if (end < start || end < 0 || start < 0)
+            {
+                throw new ArgumentException();
+            }
+            for (int i = start; i < end; i++)
+            {
+                list.Add(AtIndex(i));
+            }
+            return list.ToArray();
         }
 
         /**
@@ -52,7 +82,12 @@ namespace CsharpFundamentalsAssignment
          */
         public static int[] Sequence(int count)
         {
-            throw new NotImplementedException();
+            if (count < 0)
+            {
+                throw new ArgumentException();
+            }
+            return Slice(0, count);
+
         }
     }
 }
